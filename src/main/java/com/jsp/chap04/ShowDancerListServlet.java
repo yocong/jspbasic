@@ -26,7 +26,6 @@ public class ShowDancerListServlet extends HttpServlet {
 
         // 데이터베이스에 접근하여 댄서 목록을 가져옴
         List<Dancer> dancerList = repo.retrieve();
-//        System.out.println("dancerList = " + dancerList);
 
         // 가져온 댄서 목록을 JSP를 통해 디자인
         // JSP파일에게 보낼 데이터 수송객체에 담기

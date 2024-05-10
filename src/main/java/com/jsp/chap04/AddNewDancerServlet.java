@@ -56,9 +56,6 @@ public class AddNewDancerServlet extends HttpServlet {
         // 수송객체 (page, request, session, application)
         // request: 한 번의 요청과 응답이 끝날동안만 보관
         // session: 브라우저가 꺼질 때 까지 or 세션시간이 만료될 때 까지 보관
-//        req.setAttribute("name", name);
-//        req.setAttribute("crew", crewName);
-//        req.setAttribute("level", danceLevel);
         req.setAttribute("d",dancer);
 
         // 적당한 HTML(JSP) 응답

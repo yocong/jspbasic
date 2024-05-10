@@ -40,7 +40,7 @@ public class DancerSaveProcessServlet extends HttpServlet {
         Dancer dancer = new Dancer();
         dancer.setName(name);
         dancer.setCrewName(crewName);
-        // danceLevel은 enum으로 바꿔서 넣어줌 (String으로 만들어주었기 때문에)
+        // danceLevel은 String으로 만들어주었기 때문에 enum으로 바꿔서 넣어줌
         dancer.setDanceLevel(Dancer.DanceLevel.valueOf(danceLevel));
 
         List<Dancer.Genre> genreList = new ArrayList<>();
