@@ -4,10 +4,11 @@ import com.jsp.entity.Dancer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // 역할: 메모리 데이터베이스에 댄서들을 CRUD
 // Model
-public class DancerMemoryRepo {
+public class DancerMemoryRepo implements DancerRepository{
 
     private static DancerMemoryRepo repo = new DancerMemoryRepo();
 
@@ -26,7 +27,7 @@ public class DancerMemoryRepo {
     public boolean save(Dancer dancer) {
         if (dancer == null) return false;
         dancerList.add(dancer);
-        System.out.println(dancerList);
+//        System.out.println(dancerList);
         return true;
     }
 
@@ -34,4 +35,15 @@ public class DancerMemoryRepo {
     public List<Dancer> retrieve() {
         return dancerList;
     }
- }
+
+    public void delete(String id) {
+        List<Dancer> dancers = dancerList.stream()
+                .filter(dancer -> dancer.getId() == Integer.parseInt(id))
+                .collect(Collectors.toList());
+
+        if (!dancers.isEmpty()) {
+            dancerList.remove(dancers.get(0));
+        }
+    }
+
+}

@@ -3,6 +3,7 @@ package com.jsp.chap04;
 import com.jsp.entity.Dancer;
 import com.jsp.repository.DancerJdbcRepo;
 import com.jsp.repository.DancerMemoryRepo;
+import com.jsp.repository.DancerRepository;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +21,19 @@ import java.util.List;
 @WebServlet("/chap04/new-dancer")
 public class AddNewDancerServlet extends HttpServlet {
 
-//    private DancerMemoryRepo repo = DancerMemoryRepo.getInstance();
-    private DancerJdbcRepo repo = DancerJdbcRepo.getInstance();
+    // 인터페이스를 이용해서 원하는 것을 집어넣을 수 있음 (DIP)
+    // private DancerRepository repo = DancerJdbcRepo.getInstance();
+    // -> 3군데를 고쳐야하는 불편함은 여전 -> OCP 원칙을 따르면 3군데 안고치고도 가능
+    // AppConfig에서 객체를 쏴서 넣어줌
+
+    private DancerRepository repo;
+
+    public AddNewDancerServlet(DancerRepository repo) {
+        this.repo = repo;
+    }
+
+    //    private DancerMemoryRepo repo = DancerMemoryRepo.getInstance();
+//    private DancerJdbcRepo repo = DancerJdbcRepo.getInstance();
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
